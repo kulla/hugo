@@ -1208,9 +1208,10 @@ var markdownTrimSuffix = []byte("</p>\n")
 // markdownify renders a given string from Markdown to HTML.
 func markdownify(in interface{}) template.HTML {
 	text := cast.ToString(in)
-	// TODO(bep) ml language
+	language := viper.Get("CurrentContentLanguage").(*helpers.Language)
+
 	m := helpers.RenderBytes(&helpers.RenderingContext{
-		ConfigProvider: viper.GetViper(),
+		ConfigProvider: language,
 		Content:        []byte(text), PageFmt: "markdown"})
 	m = bytes.TrimPrefix(m, markdownTrimPrefix)
 	m = bytes.TrimSuffix(m, markdownTrimSuffix)
@@ -1808,7 +1809,8 @@ func htmlUnescape(in interface{}) (string, error) {
 
 func init() {
 	funcMap = template.FuncMap{
-		"absURL":       func(a string) template.HTML { return template.HTML(helpers.AbsURL(a)) },
+		"absLangURL":   func(a string) template.HTML { return template.HTML(helpers.AbsURL(a, true)) },
+		"absURL":       func(a string) template.HTML { return template.HTML(helpers.AbsURL(a, false)) },
 		"add":          func(a, b interface{}) (interface{}, error) { return helpers.DoArithmetic(a, b, '+') },
 		"after":        after,
 		"apply":        apply,
@@ -1861,7 +1863,8 @@ func init() {
 		"readDir":      readDirFromWorkingDir,
 		"readFile":     readFileFromWorkingDir,
 		"ref":          ref,
-		"relURL":       func(a string) template.HTML { return template.HTML(helpers.RelURL(a)) },
+		"relLangURL":   func(a string) template.HTML { return template.HTML(helpers.RelURL(a, true)) },
+		"relURL":       func(a string) template.HTML { return template.HTML(helpers.RelURL(a, false)) },
 		"relref":       relRef,
 		"replace":      replace,
 		"replaceRE":    replaceRE,

@@ -20,9 +20,9 @@ DefaultContentLanguageInSubdir = false
     [Languages.en]
         weight = 1
         title = "Hugo Multilingual Example"
-        copyright = "All rights reserved"
+        copyright = "© All rights reserved"
     
     [Languages.fr]
         weight = 2
         title = "Exemple de site multilingue avec Hugo"
-        copyright = "Tous droits reserves"
+        copyright = "© Tous droits reserves"

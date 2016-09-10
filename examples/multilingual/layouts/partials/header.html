@@ -1,13 +1,17 @@
 <header>
 	<nav id="language-menu">
-		<a href="/home">English</a>
-		<a href="/kodu">Eesti</a>
+	{{ if .IsTranslated }}
+	    {{ range .Translations }}
+	        <a href="{{ .Permalink }}">{{ .Lang }}</a>
+	    {{ end }}
+	</ul>
+	{{ end }}
 	</nav>
 
-	<h1 id="title">{{ (index .Site.Data.translations .Params.lang).title }}</h1>
+	<h1 id="title">{{ .Site.Title }}</h1>
 
 	<nav id="main-menu">
-		{{ range (index .Site.Taxonomies.menu .Params.lang).Pages }}
+		{{ range .Site.Pages }}
 		<a href="{{ .Permalink  }}">{{ .LinkTitle }}</a>
 		{{ end }}
 		<div class="clear"></div>

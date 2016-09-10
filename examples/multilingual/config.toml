@@ -1,6 +1,28 @@
-baseurl = "http://example.com"
+baseurl = "http://example.com/"
+contentdir = "content"
+layoutdir = "layouts"
+publishdir = "public"
 
-[taxonomies]
-tag = "tags"
-group = "groups"
-menu = "menu"
+#################### Languages ####################
+IsMultiLingual = true
+DefaultContentLanguage = "en"
+
+# If set to true, each language will be available under it's language code url. 
+# For example: www.example.com/en and www.example.com.de
+# Else, the default language will be available under www.example.com/
+DefaultContentLanguageInSubdir = false
+
+
+# In the section below, only site variables can be defined and translated. 
+# For example, you **cannot** define a `my_custom_var` and have it translated here. 
+ 
+[Languages]
+    [Languages.en]
+        weight = 1
+        title = "Hugo Multilingual Example"
+        copyright = "All rights reserved"
+    
+    [Languages.fr]
+        weight = 2
+        title = "Exemple de site multilingue avec Hugo"
+        copyright = "Tous droits reserves"

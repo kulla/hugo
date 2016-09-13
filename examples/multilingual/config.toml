@@ -8,7 +8,7 @@ IsMultiLingual = true
 DefaultContentLanguage = "en"
 
 # If set to true, each language will be available under it's language code url. 
-# For example: www.example.com/en and www.example.com.de
+# For example: www.example.com/en/ and www.example.com/de/
 # Else, the default language will be available under www.example.com/
 DefaultContentLanguageInSubdir = false
 
